@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 # from django.contrib.auth import authenticate ,login,logout
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -14,26 +14,31 @@ from django.core.mail import send_mail
 
 # Create your views here.
 def home(request):
-    data=dish.objects.all()
-    data1=showoff.objects.all()
-    data2=banner.objects.all()
-    data3=branch.objects.all()
-    data4=show_video.objects.all()
-    pg=Paginator(data1,4)
-    page_num=request.GET.get('page')
-    page=pg.get_page(page_num)
-    chunk=4
-    context={
-        'count':pg.count,
-        'page':page,
-        'chunk':ceil(pg.count/chunk),
-        'df':data,
-        'df1':data2,
-        'df2':data3,
-        'df3':data4,
-    }
-    # data2=testimonial.objects.all()
-    return render(request,'index.html',context)#'df2':data2})
+    if request.session.has_key('uid'):
+         data=dish.objects.all()
+         data1=showoff.objects.all()
+         data2=banner.objects.all()
+         data3=branch.objects.all()
+         data4=show_video.objects.all()
+         data5=Testimonial.objects.all()
+         pg=Paginator(data1,4)
+         page_num=request.GET.get('page')
+         page=pg.get_page(page_num)
+         chunk=4
+         context={
+         'count':pg.count,
+         'page':page,
+         'chunk':ceil(pg.count/chunk),
+         'df':data,
+         'df1':data2,
+         'df2':data3,
+         'df3':data4,
+         'testimonial':data5,
+         }
+        # data2=testimonial.objects.all()
+         return render(request,'index.html',context)#'df2':data2})
+    else:
+        return redirect('login')
 
 def signup(request):
     if request.method == 'POST':
@@ -65,6 +70,7 @@ def login(request):
         user=auth.authenticate(username=user_name,password=password)
         if user is not None:
            auth.login(request,user)
+           request.session['uid']=request.POST['username']
            return redirect('/')
         else:
             messages.info(request,'Incorrect credentials')
@@ -74,14 +80,37 @@ def product(request):
     product=dish.objects.all()
     return render(request,'product.html',{'product':product})
 def logout(request):
+    del request.session['uid']
     auth.logout(request)
-    return redirect('/')
+    return redirect('login')
 
 def about(request):        
     return render(request,'about.html')
 
 def pay(request):
     return render(request,'pay.html')
+
+@login_required
+def testimonials(request):
+    if request.method == 'POST':
+        rating = request.POST.get('rating')
+        message = request.POST.get('message')
+        # Assuming you have a profile associated with the user
+        profile = request.user.profile  # Assuming profile is related to the user
+
+        # Create the testimonial object
+        testimonial = Testimonial.objects.create(
+            author=request.user,
+            profile=profile,
+            rating=rating,
+            message=message
+        )
+        
+        # Redirect the user after creating the testimonial
+        return redirect('/')  # Change 'index' to the name of your index page
+    else:
+        # Render the template if it's a GET request
+        return render(request, 'testimonial.html',{})
 
 def contact_us(request):
     if request.method == 'POST':

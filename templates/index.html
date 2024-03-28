@@ -1,6 +1,5 @@
 {% load static %}
 {% comment %} {% static "gallery" as baseUrl %} {% endcomment %}
-
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -10,7 +9,6 @@
     <title>Burger</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="{%  static 'img/favicon.png' %}">
     <!-- Place favicon.ico in the root directory -->
@@ -217,50 +215,69 @@
     <!-- video_area_end -->
 
     <!-- testimonial_area_start  -->
-        <div class="testimonial_area ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                                <div class="section_title mb-60 text-center">
-                                        <span>Testimonials</span>
-                                        <h3>Happy Customers</h3>
-                                    </div>
-                        </div>
-                    </div>
-                   
-                                <div class="single_carousel">
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-8">
-                                            <div class="single_testmonial text-center">
-                                                <p>“Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor
-                                                    sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec
-                                                    sed
-                                                    neque.</p>
-                                                <div class="testmonial_author">
-                                                    <div class="thumb">
-                                                        <li><img src="{{ user.profile.profile_image.url }}" alt="Profile Image"  style="height: 50px; width: 50px; border-radius: 50%;"></li>
-                                                    </div>
-                                                    <h4>{{ user.first_name }} 
-                                                        {{ last_name }}</h4>
-                                                    <div class="stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    {% if testimonial %}
+<div class="testimonial_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title mb-60 text-center">
+                    <h3>Happy Customers</h3>
+                </div>
+            </div>
+        </div>
+        <div class="single_carousel">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="single_testmonial text-center">
+                        <a href="{% url 'testimonial' %}"><button style="background-color: #4CAF50;">Testimonial</button></a>
+                        {% for test in testimonial %}
+                        <p>{{ test.message }}</p>
+                        <div class="testmonial_author">
+                            <div class="thumb">
+                                <li><img src="{{ test.author.profile.profile_image.url }}" alt="Profile Image" style="height: 50px; width: 50px; border-radius: 50%;"></li>
                             </div>
+                            <h4>{{ test.author.first_name }} {{ test.author.last_name }}</h4>
+                            <div class="stars">
+                                {% if test.rating >= 1 %}
+                                    <i class="fa fa-star"></i>
+                                {% endif %}
+                                {% if test.rating >= 2 %}
+                                    <i class="fa fa-star"></i>
+                                {% endif %}
+                                {% if test.rating >= 3 %}
+                                    <i class="fa fa-star"></i>
+                                {% endif %}
+                                {% if test.rating >= 4 %}
+                                    <i class="fa fa-star"></i>
+                                {% endif %}
+                                {% if test.rating >= 5 %}
+                                    <i class="fa fa-star"></i>
+                                {% elif test.rating > 4 %}
+                                    <i class="fa fa-star-half"></i>
+                                {% endif %}
+                            </div>                            
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
+            </div>
         </div>
-    <!-- testimonial_area_ned  -->
-
+    </div>
+</div>
+{% else %}
+<div class="testimonial_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title mb-60 text-center">
+                    <a href="{% url 'testimonial' %}">Testimonial</a>
+                    <h3>Happy Customers</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
     <!-- instragram_area_start -->
     <div class="instragram_area">   
     <div class="container">

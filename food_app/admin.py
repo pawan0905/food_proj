@@ -9,4 +9,5 @@ admin.site.register(branch)
 admin.site.register(profile)
 admin.site.register(show_video)
 admin.site.register(contact)
+admin.site.register(Testimonial)
 

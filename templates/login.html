@@ -88,7 +88,7 @@
         <input type="submit" value="Login">
     </form>
     <div class="create-account">
-        <a href="signup"> Create New Account</a>
+        <a href="{% url 'signup' %}"> Create New Account</a>
     </div>
     {% if messages %}
    {% for i in messages %}
