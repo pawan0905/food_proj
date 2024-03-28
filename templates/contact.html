@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+<style>
+  /* CSS styling */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  .contact-info {
+    margin-top: 30px;
+  }
+  .contact-info p {
+    margin-bottom: 10px;
+  }
+  .contact-form {
+    margin-top: 30px;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  textarea {
+    height: 150px;
+  }
+  input[type="submit"] {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  input[type="submit"]:hover {
+    background-color: #e25700;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Contact Us</h1>
+  
+  <div class="contact-info">
+    <p>Email: contact@yourcompany.com</p>
+    <p>Phone: 123-456-7890</p>
+    <p>Address: 123 Main Street, City, Country</p>
+  </div> 
+  <div class="contact-form">
+    <form  method="post" action="contact">
+        {% csrf_token %}
+      <input type="text" name="name" placeholder="name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

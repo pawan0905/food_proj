@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 400px;
+        margin: 100px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #1877f2;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        background-color: #1877f2;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #1465c8;
+    }
+
+    .forgot-password {
+        text-align: right;
+        font-size: 14px;
+    }
+
+    .forgot-password a {
+        color: #1877f2;
+        text-decoration: none;
+    }
+
+    .create-account {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .create-account a {
+        color: #1877f2;
+        text-decoration: none;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form action='{% url 'login' %}' method='post'>
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="UserName" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <div class="forgot-password">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <input type="submit" value="Login">
+    </form>
+    <div class="create-account">
+        <a href="signup"> Create New Account</a>
+    </div>
+    {% if messages %}
+   {% for i in messages %}
+      {{ i }}
+     {% endfor %} 
+{% endif %} 
+</div>
+
+</body>
+</html>
