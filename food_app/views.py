@@ -120,3 +120,6 @@ def contact_us(request):
         contact.objects.create(name=name, email=email, message=message)
         return HttpResponse("<h3>Thank You For Contacting Us ,Someone from Our Team Will Contact You Soon!</h3>")
     return render(request, 'contact.html') 
+
+def user_profile(request):
+    return render(request, 'profile.html')

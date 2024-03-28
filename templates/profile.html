@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+<form method='post',action='profile'>
+    <div class="container">
+        <h1>Profile</h1>
+        <img src="{{ user.profile.profile_image.url }}" alt="Profile Picture" width="150">
+        <h2>{{ user.username }}</h2>
+        <p>{{ user.email }}</p>
+        <p>Location: City, Country</p>
+        <h3>About Me</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend tortor et nisi congue, id hendrerit metus fermentum. Aliquam nec odio eget ante tempor commodo.</p>
+        <h3>Contact Me</h3>
+        <p>You can reach me via email at <a href="{{ user.email }}">{{ user.email }}</a></p>
+    </div>
+</form>
+</html>
