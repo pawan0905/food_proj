@@ -32,12 +32,13 @@
     <div class="container">
         <h1>Profile</h1>
         <img src="{{ user.profile.profile_image.url }}" alt="Profile Picture" width="150">
-        <h2>{{ user.username }}</h2>
-        <p>{{ user.email }}</p>
+        <h2>Name:-{{ user.username }}</h2>
+        <p>E-Mail:-{{ user.email }}</p>
         <p>Location: City, Country</p>
         <h3>About Me</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend tortor et nisi congue, id hendrerit metus fermentum. Aliquam nec odio eget ante tempor commodo.</p>
         <h3>Contact Me</h3>
+        <p>Bio:-{{ profile.bio }}</p>
         <p>You can reach me via email at <a href="{{ user.email }}">{{ user.email }}</a></p>
     </div>
 </form>
