@@ -42,8 +42,6 @@ class contact(models.Model):
         return self.name
 
 
-from django.db import models
-
 class banner(models.Model):
     title = models.CharField(max_length=100)
     video_file = models.FileField(upload_to='banner')
@@ -72,4 +70,6 @@ class Testimonial(models.Model):
      
     def __str__(self):
         return self.author.username
+    
+
     
