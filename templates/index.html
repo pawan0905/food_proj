@@ -118,9 +118,9 @@
         <div class="slider_active owl-carousel">
                 <class="container">
                     {% for k in df1 %}
-                    <div style="margin-top:6vw;" class="video-container  d-flex align-items-center slider_bg_1 overlay">
-                            <video autoplay loop muted audio="True" style="width: 100%;">
-                                <source src="{{ k.video_file.url }}" type="video/mp4">
+                    <div style="margin-top:4vw;" class="video-container  d-flex align-items-center slider_bg_1 overlay">
+                            <video autoplay loop muted audio="True" style="width: 1000%;">
+                                <source src="{{ k.video_file.url }}" type="video/mp4" >
                             </video>
                     </div>
                     {% endfor %}
