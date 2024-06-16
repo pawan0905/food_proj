@@ -6,7 +6,7 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: |
       python manage.py migrate
-      uvicorn food_project.asgi:application
+      uvicorn food_project.asgi:application --host 0.0.0.0 --port 8001
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: "food_project.settings"
