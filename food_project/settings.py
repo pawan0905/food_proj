@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from django.core.asgi import get_asgi_application
@@ -80,17 +81,14 @@ ASGI_APPLICATION = 'food_project.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+# Parse database configuration from $DATABASE_URL
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'food_db',
-        'USER':'postgres',
-        'PASSWORD':'db@123',
-        'HOST':'localhost'
-    }
+    'default': dj_database_url.config(
+        default='postgresql://postgres:db%40123@localhost/food_db'
+    )
+
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
