@@ -1,14 +1,16 @@
 services:
   - type: web
     name: food_project-web-service
-    env: python  
+    env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: 
-    python manage.py migrate
-    gunicorn food_project.wsgi:application 
-     envVars:
+    startCommand: |
+      python manage.py migrate  
+      uvicorn food_project.asgi:application --host 0.0.0.0 --port $PORT
+    envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: "food_project.settings"
       - key: DATABASE_URL
         value: "postgresql://postgres:db%40123@localhost/food_db"
+
+
