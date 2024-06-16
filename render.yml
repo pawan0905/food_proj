@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: food_project-web-service
+    env: python  # This indicates a Python runtime environment
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn food_project.asgi:application --host 127.0.0.1 --port 8000    
