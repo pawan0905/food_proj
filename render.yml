@@ -5,12 +5,10 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: |
-      python manage.py migrate  
+      python manage.py migrate
       uvicorn food_project.asgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: "food_project.settings"
       - key: DATABASE_URL
         value: "postgresql://postgres:db%40123@localhost/food_db"
-
-

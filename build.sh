@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# Exit on error
-set -o errexit
+set -e  # Exit immediately if a command exits with a non-zero status
 
-# Modify this line as needed for your package manager (pip, poetry, etc.)
+# Install Python dependencies
 pip install -r requirements.txt
 
-# Convert static asset files
+# Collect static files
 python manage.py collectstatic --no-input
 
-# Apply any outstanding database migrations
+# Apply database migrations
 python manage.py migrate
+
+echo "Deployment completed successfully."
