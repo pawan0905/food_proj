@@ -1,0 +1,37 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 27/07/2019 08:27
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.10b916c7582c.eot");
+  src: url("../fonts/Flaticon.10b916c7582c.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.5c173cc81615.woff2") format("woff2"),
+       url("../fonts/Flaticon.20ef74211750.woff") format("woff"),
+       url("../fonts/Flaticon.3ad315cdd995.ttf") format("truetype"),
+       url("../fonts/Flaticon.fd4b919f8d7b.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.fd4b919f8d7b.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+font-style: normal;
+}
+
+.flaticon-left-arrow:before { content: "\f100"; }
+.flaticon-right-arrow:before { content: "\f101"; }
+.flaticon-play-button:before { content: "\f102"; }
+.flaticon-quote:before { content: "\f103"; }
+.flaticon-clock:before { content: "\f104"; }
+.flaticon-world:before { content: "\f105"; }
+.flaticon-mail:before { content: "\f106"; }

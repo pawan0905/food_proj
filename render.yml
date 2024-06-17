@@ -9,6 +9,6 @@ services:
       uvicorn food_project.asgi:application --host 0.0.0.0 --port 8000
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: "food_project.settings"
+        value: food_project.settings
       - key: DATABASE_URL
-        value: "postgresql://postgres:db%40123@localhost/food_db"
+        value: postgresql://postgres:db%40123@localhost/food_db
