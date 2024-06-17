@@ -11,4 +11,4 @@ services:
       - key: DJANGO_SETTINGS_MODULE
         value: food_project.settings
       - key: DATABASE_URL
-        value: postgresql://postgres:db%40123@localhost/food_db
+        value: postgres://postgres:db%40123@localhost:5432/food_db

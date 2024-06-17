@@ -84,9 +84,8 @@ ASGI_APPLICATION = 'food_project.asgi.application'
 # Parse database configuration from $DATABASE_URL
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:db%40123@localhost/food_db'
+        default='postgres://postgres:db%40123@localhost:5432/food_db'
     )
-
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
