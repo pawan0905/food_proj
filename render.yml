@@ -3,10 +3,10 @@ services:
     name: food_project-web-service
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: ./build.sh
     startCommand: |
-      python manage.py migrate
-      uvicorn food_project.asgi:application --host 0.0.0.0 --port 8001
+      python manage.py migrate  
+      uvicorn food_project.asgi:application --host 0.0.0.0 --port 8000
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: "food_project.settings"
