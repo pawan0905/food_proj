@@ -12,3 +12,9 @@ services:
         value: food_project.settings
       - key: DATABASE_URL
         value: postgres://postgres:db%40123@localhost:5432/food_db
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: admin
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: admin_password
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: admin@email.com
