@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#4-7um!*w9cyznnq6#kmsc6h+(!8$ozgw&n)eas#k$=ass)!$e'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower()=="true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -84,9 +84,13 @@ ASGI_APPLICATION = 'food_project.asgi.application'
 # Parse database configuration from $DATABASE_URL
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://postgres:db%40123@localhost:5432/food_db'
+        default='postgresql://postgres:db%40123@localhost/food_db'
     )
+
 }
+database_url=os.environ.get("DATABASE_URL")
+DATABASES["default"]=dj_database_url.parse(database_url)
+# DATABASES["default"]=dj_database_url.parse("postgres://foodpro_render_user:XL1zoRMD6jB4efO4i2ynU2Sc5zzdPCpK@dpg-cpo5ri88fa8c73bc1nh0-a.oregon-postgres.render.com/foodpro_render")
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -121,7 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  # Assuming you have this defined
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
