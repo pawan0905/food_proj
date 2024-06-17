@@ -174,19 +174,13 @@ h3 {
 }
 
 /* line 133, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/theme-default.scss */
-.bg-img-1 {
-  background-image: url(../img/slider/slider-img-1.jpg);
-}
+
 
 /* line 136, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/theme-default.scss */
-.bg-img-2 {
-  background-image: url(../img/background-img/bg-img-2.jpg);
-}
+
 
 /* line 139, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/theme-default.scss */
-.cta-bg-1 {
-  background-image: url(../img/background-img/bg-img-3.jpg);
-}
+
 
 /* line 144, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/theme-default.scss */
 .overlay {
@@ -286,4 +280,3 @@ h3 {
   margin-bottom: 20px;
 }
 
-/*# sourceMappingURL=theme-default.css.map */
