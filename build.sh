@@ -7,6 +7,8 @@ pip install -r requirements.txt
 # Collect static files
 python manage.py collectstatic --no-input
 
+pip install --upgrade pip setuptools
+
 # Migrate database
 python manage.py migrate
 
