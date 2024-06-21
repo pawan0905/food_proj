@@ -21,6 +21,6 @@ services:
       - key: CLOUDINARY_CLOUD_NAME
         value: dz5ezf3xf
       - key: CLOUDINARY_API_KEY
-        value: 111922656567258
+        value: 519955659836142
       - key: CLOUDINARY_API_SECRET
-        value: VfbNTaPgMl2aaikdFjyUnB_M48Q
+        value: iuGU2LkMg40KMMyCxAugFZCaQd0

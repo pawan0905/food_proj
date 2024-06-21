@@ -8,8 +8,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from math import*
 from django.core.mail import send_mail
-
-
+import cloudinary.uploader
 
 
 # Create your views here.
@@ -40,28 +39,43 @@ def home(request):
     else:
         return redirect('login')
 
+
 def signup(request):
     if request.method == 'POST':
-        fn=request.POST['first_name']
-        ln=request.POST['last_name']
-        user_name=request.POST['username']
-        Email=request.POST['email']
-        password1=request.POST['password']
-        password2=request.POST['confirm_password']
+        # Extract form data
+        fn = request.POST['first_name']
+        ln = request.POST['last_name']
+        user_name = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password']
+        password2 = request.POST['confirm_password']
         img = request.FILES.get('profile_image', None)
-        if password1==password2:
-            if User.objects.filter(email=Email).exists():
-                messages.info(request,'Account with this email already exists')
+
+        if password1 == password2:
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Account with this email already exists')
             elif User.objects.filter(username=user_name).exists():
-                messages.info(request,' username already exists')
+                messages.info(request, 'Username already exists')
             else:
-                user=User.objects.create_user(username=user_name,password=password1,email=Email,first_name=fn,last_name=ln)
-                user_profile = profile.objects.create(user=user, profile_image=img)
+                # Create the user
+                user = User.objects.create_user(username=user_name, password=password1, email=email, first_name=fn, last_name=ln)
+
+                # Upload profile image to Cloudinary
+                if img:
+                    cloudinary_response = cloudinary.uploader.upload(img)
+                    profile_image_url = cloudinary_response['secure_url']
+                else:
+                    profile_image_url = None
+
+                # Create user profile
+                user_profile = profile.objects.create(user=user, profile_image=profile_image_url)
+
                 messages.info(request, 'You have successfully signed up!')
-                return redirect("login")
+                return redirect('login')
         else:
-            messages.info(request,"Both Password is not same")  
-    return render(request,'signup.html')
+            messages.info(request, "Passwords do not match")
+
+    return render(request, 'signup.html')
 
 def login(request):
     if request.method=='POST':
