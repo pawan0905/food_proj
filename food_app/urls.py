@@ -1,5 +1,7 @@
 from .import views
-from django.urls import path
+from django.urls import path,re_path
+from django.views.static import serve
+
 
 urlpatterns = [
     path('',views.home,name='home'),
@@ -12,7 +14,9 @@ urlpatterns = [
     path('contact',views.contact_us, name='contact'),
     path('testimonial', views.testimonials, name='testimonial'),
     path('profile',views.user_profile, name='profile'),
+    re_path(r'^dishimage/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
+
 
 
 
